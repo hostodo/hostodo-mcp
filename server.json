@@ -1,0 +1,48 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+  "name": "com.hostodo/mcp",
+  "title": "Hostodo MCP",
+  "description": "Manage Hostodo VPS instances from MCP clients and AI agents.",
+  "version": "1.0.0",
+  "repository": {
+    "url": "https://github.com/hostodo/hostodo-mcp",
+    "source": "github"
+  },
+  "websiteUrl": "https://hostodo.com/docs/mcp",
+  "remotes": [
+    {
+      "type": "streamable-http",
+      "url": "https://api.hostodo.com/mcp",
+      "headers": [
+        {
+          "name": "Authorization",
+          "description": "Hostodo MCP developer token in the form `Bearer <hostodo_agent_token>`. Create one in Hostodo Console under Settings → MCP.",
+          "isRequired": true,
+          "isSecret": true
+        }
+      ]
+    }
+  ],
+  "_meta": {
+    "io.modelcontextprotocol.registry/publisher-provided": {
+      "brand": {
+        "displayName": "Hostodo",
+        "legalName": "Hostodo",
+        "tagline": "VPS hosting for developers and AI agents",
+        "website": "https://hostodo.com",
+        "developerPortal": "https://hostodo.com/docs/mcp"
+      },
+      "capabilities": [
+        "List owned VPS instances and capability flags",
+        "Read detailed VM metadata",
+        "List enabled OS templates",
+        "Start, shutdown, reboot, stop, and reset VMs",
+        "Rename and reinstall VMs with explicit confirmation phrases",
+        "Enable or disable per-VM MCP command execution",
+        "Run bounded synchronous commands through the QEMU guest agent",
+        "Start, poll, stream logs from, and cancel asynchronous VM commands",
+        "Upload and install artifacts onto owned VMs"
+      ]
+    }
+  }
+}
