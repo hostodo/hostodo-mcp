@@ -2,7 +2,7 @@
   "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
   "name": "com.hostodo/mcp",
   "title": "Hostodo MCP",
-  "description": "Manage Hostodo VPS infrastructure, support, billing, DNS, and deployment workflows from MCP clients and AI agents.",
+  "description": "Manage Hostodo VPS infrastructure from MCP clients and AI agents.",
   "version": "1.0.0",
   "repository": {
     "url": "https://github.com/hostodo/hostodo-mcp",
