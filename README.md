@@ -37,9 +37,27 @@ Tokens are scoped. Grant only the scopes your client needs:
 
 Command execution is disabled by default on each VM and must be explicitly enabled per VM before exec/artifact tools can run.
 
+## Run this MCP server locally
+
+This repository contains a small runnable MCP wrapper so registries such as Glama can start and introspect Hostodo MCP even though the production implementation lives in Hostodo's hosted API.
+
+```bash
+npm install
+HOSTODO_MCP_TOKEN=<hostodo_agent_token> npm start
+```
+
+Docker:
+
+```bash
+docker build -t hostodo-mcp .
+docker run --rm -i -e HOSTODO_MCP_TOKEN=<hostodo_agent_token> hostodo-mcp
+```
+
+`tools/list` works without a token for registry evaluation. Real tool calls require `HOSTODO_MCP_TOKEN` and are proxied to `https://api.hostodo.com/mcp`.
+
 ## MCP client configuration
 
-Use the hosted Streamable HTTP endpoint:
+Use the hosted Streamable HTTP endpoint directly:
 
 ```json
 {

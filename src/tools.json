@@ -1,0 +1,377 @@
+[
+  {
+    "name": "hostodo_list_vms",
+    "description": "List the authenticated Hostodo customer's VPS instances and capability flags.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {},
+      "additionalProperties": false
+    }
+  },
+  {
+    "name": "hostodo_get_vm",
+    "description": "Get detailed metadata for one owned Hostodo VPS. VM references may be id, hostname, or unique prefix.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "vm_id": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "vm_id"
+      ],
+      "additionalProperties": false
+    }
+  },
+  {
+    "name": "hostodo_list_templates",
+    "description": "List enabled OS templates that can be used with VM reinstall workflows. Use the returned id as template_id. Requires vms:read scope.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {},
+      "additionalProperties": false
+    }
+  },
+  {
+    "name": "hostodo_power_vm",
+    "description": "Power-control one owned VPS. Actions: start, shutdown, reboot, stop, reset.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "vm_id": {
+          "type": "string"
+        },
+        "action": {
+          "type": "string",
+          "enum": [
+            "start",
+            "shutdown",
+            "reboot",
+            "stop",
+            "reset"
+          ]
+        }
+      },
+      "required": [
+        "vm_id",
+        "action"
+      ],
+      "additionalProperties": false
+    }
+  },
+  {
+    "name": "hostodo_exec_vm_command",
+    "description": "Execute a bounded root command inside one owned VPS via the QEMU guest agent.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "vm_id": {
+          "type": "string"
+        },
+        "command": {
+          "type": "string"
+        },
+        "timeout_seconds": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 60
+        }
+      },
+      "required": [
+        "vm_id",
+        "command"
+      ],
+      "additionalProperties": false
+    }
+  },
+  {
+    "name": "hostodo_set_vm_exec_enabled",
+    "description": "Enable or disable MCP/QEMU guest-agent root command execution for one owned VPS. Requires vms:exec scope and an exact confirmation phrase. For enable, confirmation must be exactly: ENABLE MCP EXEC <vm_id>. For disable, confirmation must be exactly: DISABLE MCP EXEC <vm_id>. Use the VM's Hostodo instance id, not its hostname.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "vm_id": {
+          "type": "string",
+          "description": "Hostodo instance id, for example ins::chud7xorwx."
+        },
+        "enabled": {
+          "type": "boolean"
+        },
+        "confirmation": {
+          "type": "string",
+          "description": "Exact confirmation phrase. If enabled=true, use ENABLE MCP EXEC <vm_id>. If enabled=false, use DISABLE MCP EXEC <vm_id>. Example: ENABLE MCP EXEC ins::chud7xorwx"
+        }
+      },
+      "required": [
+        "vm_id",
+        "enabled",
+        "confirmation"
+      ],
+      "additionalProperties": false
+    }
+  },
+  {
+    "name": "hostodo_reinstall_vm",
+    "description": "Destructively reinstall one owned Hostodo VPS to an enabled OS template. Call hostodo_list_templates first to discover valid template_id values. Requires vms:power scope and the exact confirmation phrase: REINSTALL <vm_id> TO TEMPLATE <template_id>. This deletes and rebuilds the guest disk, starts the VM, and returns a one-time root password.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "vm_id": {
+          "type": "string",
+          "description": "Hostodo instance id, hostname, or unique prefix."
+        },
+        "template_id": {
+          "type": "integer",
+          "description": "Enabled OdoPanel template id to reinstall to."
+        },
+        "confirmation": {
+          "type": "string",
+          "description": "Exact phrase: REINSTALL <vm_id> TO TEMPLATE <template_id>. Example: REINSTALL ins::chud7xorwx TO TEMPLATE 12"
+        },
+        "ssh_key_id": {
+          "type": "integer",
+          "description": "Optional owned SSH key id to inject during reinstall."
+        }
+      },
+      "required": [
+        "vm_id",
+        "template_id",
+        "confirmation"
+      ],
+      "additionalProperties": false
+    }
+  },
+  {
+    "name": "hostodo_rename_vm",
+    "description": "Rename one owned Hostodo VPS hostname/display label. Requires vms:power scope and exact confirmation phrase: RENAME <vm_id> TO <hostname>.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "vm_id": {
+          "type": "string",
+          "description": "Hostodo instance id, current hostname, or unique prefix."
+        },
+        "hostname": {
+          "type": "string",
+          "description": "New hostname/display label for the VPS."
+        },
+        "confirmation": {
+          "type": "string",
+          "description": "Exact phrase: RENAME <vm_id> TO <hostname>. Example: RENAME ins::chud7xorwx TO app-server"
+        }
+      },
+      "required": [
+        "vm_id",
+        "hostname",
+        "confirmation"
+      ],
+      "additionalProperties": false
+    }
+  },
+  {
+    "name": "hostodo_create_artifact_upload",
+    "description": "Create an upload slot for transferring a file to a Hostodo VPS. Returns a presigned PUT URL valid for 15 minutes. After uploading, use hostodo_install_artifact to install the file to the VM filesystem. Requires vms:exec scope and mcp_exec_enabled on the target VM.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "vm_id": {
+          "type": "string",
+          "description": "Hostodo instance id, hostname, or unique prefix."
+        },
+        "filename": {
+          "type": "string",
+          "description": "Filename for the artifact. Must be alphanumeric with dots, dashes, underscores. Max 200 characters."
+        },
+        "size_bytes": {
+          "type": "integer",
+          "minimum": 1,
+          "description": "Exact size of the file in bytes."
+        },
+        "sha256": {
+          "type": "string",
+          "description": "SHA-256 hash of the file content (64 hex characters)."
+        },
+        "purpose": {
+          "type": "string",
+          "enum": [
+            "file",
+            "config",
+            "script"
+          ],
+          "description": "Purpose category. 'file' allows up to 256MB, 'config' up to 1MB, 'script' up to 5MB."
+        }
+      },
+      "required": [
+        "vm_id",
+        "filename",
+        "size_bytes",
+        "sha256",
+        "purpose"
+      ],
+      "additionalProperties": false
+    }
+  },
+  {
+    "name": "hostodo_install_artifact",
+    "description": "Install a previously uploaded artifact to the VM filesystem. Downloads the artifact to the VM, verifies SHA-256, sets ownership and permissions, and atomically moves to the destination path. Requires vms:exec scope and mcp_exec_enabled on the target VM.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "artifact_id": {
+          "type": "string",
+          "description": "Artifact ID from hostodo_create_artifact_upload."
+        },
+        "destination_path": {
+          "type": "string",
+          "description": "Absolute path where the file will be installed. Parent directories will be created if needed. Certain system paths are denied."
+        },
+        "mode": {
+          "type": "string",
+          "description": "File permissions in octal (e.g., '0644', '755'). Default: '0644'.",
+          "default": "0644"
+        },
+        "owner": {
+          "type": "string",
+          "description": "File owner in 'user' or 'user:group' format. Default: 'root'.",
+          "default": "root"
+        }
+      },
+      "required": [
+        "artifact_id",
+        "destination_path"
+      ],
+      "additionalProperties": false
+    }
+  },
+  {
+    "name": "hostodo_start_vm_command",
+    "description": "Start a long-running async command on one owned VPS. Returns immediately with a command_id for polling via hostodo_get_vm_command_output. Use for builds, package installs, migrations, service restarts, etc. Requires vms:exec scope and mcp_exec_enabled=true on the VM.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "vm_id": {
+          "type": "string",
+          "description": "Hostodo instance id, hostname, or unique prefix."
+        },
+        "command": {
+          "type": "string",
+          "description": "Shell command to execute (e.g., 'docker compose build')."
+        },
+        "timeout_seconds": {
+          "type": "integer",
+          "minimum": 60,
+          "maximum": 7200,
+          "description": "Max runtime in seconds (default 1800, max 7200)."
+        },
+        "label": {
+          "type": "string",
+          "description": "Optional human-readable label (e.g., 'build app image')."
+        },
+        "working_directory": {
+          "type": "string",
+          "description": "Optional absolute path to run command from."
+        }
+      },
+      "required": [
+        "vm_id",
+        "command"
+      ],
+      "additionalProperties": false
+    }
+  },
+  {
+    "name": "hostodo_get_vm_command_output",
+    "description": "Get status and bounded output tails for an async command run. Returns current status, exit_code, stdout/stderr tails, and next offsets for incremental reads via hostodo_read_vm_command_logs.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "vm_id": {
+          "type": "string",
+          "description": "Hostodo instance id, hostname, or unique prefix."
+        },
+        "command_id": {
+          "type": "string",
+          "description": "Command run ID from hostodo_start_vm_command."
+        },
+        "stdout_tail_bytes": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 65536,
+          "description": "Max bytes of stdout tail to return (default 8192)."
+        },
+        "stderr_tail_bytes": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 65536,
+          "description": "Max bytes of stderr tail to return (default 8192)."
+        }
+      },
+      "required": [
+        "vm_id",
+        "command_id"
+      ],
+      "additionalProperties": false
+    }
+  },
+  {
+    "name": "hostodo_read_vm_command_logs",
+    "description": "Read incremental stdout/stderr chunks from an async command run by offset. Use next_stdout_offset and next_stderr_offset from previous calls to resume.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "vm_id": {
+          "type": "string",
+          "description": "Hostodo instance id, hostname, or unique prefix."
+        },
+        "command_id": {
+          "type": "string",
+          "description": "Command run ID from hostodo_start_vm_command."
+        },
+        "stdout_offset": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Byte offset to start reading stdout from (default 0)."
+        },
+        "stderr_offset": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Byte offset to start reading stderr from (default 0)."
+        },
+        "max_bytes": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 65536,
+          "description": "Max bytes to read per stream (default 16384, max 65536)."
+        }
+      },
+      "required": [
+        "vm_id",
+        "command_id"
+      ],
+      "additionalProperties": false
+    }
+  },
+  {
+    "name": "hostodo_cancel_vm_command",
+    "description": "Cancel a running async command. Returns the final status. Has no effect if the command already finished.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "vm_id": {
+          "type": "string",
+          "description": "Hostodo instance id, hostname, or unique prefix."
+        },
+        "command_id": {
+          "type": "string",
+          "description": "Command run ID from hostodo_start_vm_command."
+        }
+      },
+      "required": [
+        "vm_id",
+        "command_id"
+      ],
+      "additionalProperties": false
+    }
+  }
+]

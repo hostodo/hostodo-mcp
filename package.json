@@ -1,0 +1,26 @@
+{
+  "name": "@hostodo/hostodo-mcp",
+  "version": "1.0.0",
+  "description": "Runnable MCP wrapper for Hostodo's hosted VPS management MCP endpoint.",
+  "type": "module",
+  "bin": {
+    "hostodo-mcp": "src/index.js"
+  },
+  "scripts": {
+    "start": "node src/index.js",
+    "test": "node test/smoke.mjs"
+  },
+  "keywords": [
+    "mcp",
+    "model-context-protocol",
+    "hostodo",
+    "vps"
+  ],
+  "license": "MIT",
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.29.0"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}
