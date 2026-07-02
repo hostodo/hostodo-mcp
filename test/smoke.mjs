@@ -59,8 +59,18 @@ const list = await waitFor(2);
 if (list.error) throw new Error(`tools/list failed: ${JSON.stringify(list.error)}`);
 
 const tools = list.result?.tools || [];
-if (tools.length !== 14) throw new Error(`Expected 14 tools, got ${tools.length}`);
-for (const name of ['hostodo_list_vms', 'hostodo_list_templates', 'hostodo_start_vm_command', 'hostodo_install_artifact']) {
+if (tools.length !== 47) throw new Error(`Expected 47 tools, got ${tools.length}`);
+for (const name of [
+  'hostodo_list_vms',
+  'hostodo_list_templates',
+  'hostodo_start_vm_command',
+  'hostodo_install_artifact',
+  'hostodo_list_invoices',
+  'hostodo_create_ticket',
+  'hostodo_list_dns_zones',
+  'hostodo_get_vm_metrics',
+  'hostodo_add_ssh_key',
+]) {
   if (!tools.some((tool) => tool.name === name)) throw new Error(`Missing tool ${name}`);
 }
 

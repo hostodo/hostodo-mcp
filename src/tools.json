@@ -373,5 +373,896 @@
       ],
       "additionalProperties": false
     }
+  },
+  {
+    "name": "hostodo_get_deployment",
+    "description": "Coming soon (deploy): Inspect deployment status and logs. This PMF stub records demand and returns a structured coming_soon response; it does not perform the requested action yet. Do not send secrets.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "vm_id": {
+          "type": "string",
+          "description": "Optional Hostodo instance id, hostname, or unique prefix when relevant."
+        },
+        "resource_id": {
+          "type": "string",
+          "description": "Optional invoice/ticket/zone/deployment/resource id when relevant."
+        },
+        "intent": {
+          "type": "string",
+          "description": "Optional brief description of what the user wanted to do."
+        },
+        "metadata": {
+          "type": "object",
+          "description": "Optional non-secret request metadata for PMF discovery.",
+          "additionalProperties": true
+        }
+      },
+      "additionalProperties": true
+    }
+  },
+  {
+    "name": "hostodo_rollback_deployment",
+    "description": "Coming soon (deploy): Rollback a prior deployment. This PMF stub records demand and returns a structured coming_soon response; it does not perform the requested action yet. Do not send secrets.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "vm_id": {
+          "type": "string",
+          "description": "Optional Hostodo instance id, hostname, or unique prefix when relevant."
+        },
+        "resource_id": {
+          "type": "string",
+          "description": "Optional invoice/ticket/zone/deployment/resource id when relevant."
+        },
+        "intent": {
+          "type": "string",
+          "description": "Optional brief description of what the user wanted to do."
+        },
+        "metadata": {
+          "type": "object",
+          "description": "Optional non-secret request metadata for PMF discovery.",
+          "additionalProperties": true
+        }
+      },
+      "additionalProperties": true
+    }
+  },
+  {
+    "name": "hostodo_restart_service",
+    "description": "Coming soon (deploy): Restart an application or system service on a VM. This PMF stub records demand and returns a structured coming_soon response; it does not perform the requested action yet. Do not send secrets.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "vm_id": {
+          "type": "string",
+          "description": "Optional Hostodo instance id, hostname, or unique prefix when relevant."
+        },
+        "resource_id": {
+          "type": "string",
+          "description": "Optional invoice/ticket/zone/deployment/resource id when relevant."
+        },
+        "intent": {
+          "type": "string",
+          "description": "Optional brief description of what the user wanted to do."
+        },
+        "metadata": {
+          "type": "object",
+          "description": "Optional non-secret request metadata for PMF discovery.",
+          "additionalProperties": true
+        }
+      },
+      "additionalProperties": true
+    }
+  },
+  {
+    "name": "hostodo_get_service_logs",
+    "description": "Coming soon (deploy): Read service logs from a VM. This PMF stub records demand and returns a structured coming_soon response; it does not perform the requested action yet. Do not send secrets.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "vm_id": {
+          "type": "string",
+          "description": "Optional Hostodo instance id, hostname, or unique prefix when relevant."
+        },
+        "resource_id": {
+          "type": "string",
+          "description": "Optional invoice/ticket/zone/deployment/resource id when relevant."
+        },
+        "intent": {
+          "type": "string",
+          "description": "Optional brief description of what the user wanted to do."
+        },
+        "metadata": {
+          "type": "object",
+          "description": "Optional non-secret request metadata for PMF discovery.",
+          "additionalProperties": true
+        }
+      },
+      "additionalProperties": true
+    }
+  },
+  {
+    "name": "hostodo_list_invoices",
+    "description": "Coming soon (billing): List account invoices. This PMF stub records demand and returns a structured coming_soon response; it does not perform the requested action yet. Do not send secrets.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "vm_id": {
+          "type": "string",
+          "description": "Optional Hostodo instance id, hostname, or unique prefix when relevant."
+        },
+        "resource_id": {
+          "type": "string",
+          "description": "Optional invoice/ticket/zone/deployment/resource id when relevant."
+        },
+        "intent": {
+          "type": "string",
+          "description": "Optional brief description of what the user wanted to do."
+        },
+        "metadata": {
+          "type": "object",
+          "description": "Optional non-secret request metadata for PMF discovery.",
+          "additionalProperties": true
+        }
+      },
+      "additionalProperties": true
+    }
+  },
+  {
+    "name": "hostodo_get_invoice",
+    "description": "Coming soon (billing): Get invoice details. This PMF stub records demand and returns a structured coming_soon response; it does not perform the requested action yet. Do not send secrets.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "vm_id": {
+          "type": "string",
+          "description": "Optional Hostodo instance id, hostname, or unique prefix when relevant."
+        },
+        "resource_id": {
+          "type": "string",
+          "description": "Optional invoice/ticket/zone/deployment/resource id when relevant."
+        },
+        "intent": {
+          "type": "string",
+          "description": "Optional brief description of what the user wanted to do."
+        },
+        "metadata": {
+          "type": "object",
+          "description": "Optional non-secret request metadata for PMF discovery.",
+          "additionalProperties": true
+        }
+      },
+      "additionalProperties": true
+    }
+  },
+  {
+    "name": "hostodo_pay_invoice",
+    "description": "Coming soon (billing): Pay an invoice. This PMF stub records demand and returns a structured coming_soon response; it does not perform the requested action yet. Do not send secrets.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "vm_id": {
+          "type": "string",
+          "description": "Optional Hostodo instance id, hostname, or unique prefix when relevant."
+        },
+        "resource_id": {
+          "type": "string",
+          "description": "Optional invoice/ticket/zone/deployment/resource id when relevant."
+        },
+        "intent": {
+          "type": "string",
+          "description": "Optional brief description of what the user wanted to do."
+        },
+        "metadata": {
+          "type": "object",
+          "description": "Optional non-secret request metadata for PMF discovery.",
+          "additionalProperties": true
+        }
+      },
+      "additionalProperties": true
+    }
+  },
+  {
+    "name": "hostodo_list_payment_methods",
+    "description": "Coming soon (billing): List saved payment methods. This PMF stub records demand and returns a structured coming_soon response; it does not perform the requested action yet. Do not send secrets.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "vm_id": {
+          "type": "string",
+          "description": "Optional Hostodo instance id, hostname, or unique prefix when relevant."
+        },
+        "resource_id": {
+          "type": "string",
+          "description": "Optional invoice/ticket/zone/deployment/resource id when relevant."
+        },
+        "intent": {
+          "type": "string",
+          "description": "Optional brief description of what the user wanted to do."
+        },
+        "metadata": {
+          "type": "object",
+          "description": "Optional non-secret request metadata for PMF discovery.",
+          "additionalProperties": true
+        }
+      },
+      "additionalProperties": true
+    }
+  },
+  {
+    "name": "hostodo_add_payment_method",
+    "description": "Coming soon (billing): Add a payment method. This PMF stub records demand and returns a structured coming_soon response; it does not perform the requested action yet. Do not send secrets.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "vm_id": {
+          "type": "string",
+          "description": "Optional Hostodo instance id, hostname, or unique prefix when relevant."
+        },
+        "resource_id": {
+          "type": "string",
+          "description": "Optional invoice/ticket/zone/deployment/resource id when relevant."
+        },
+        "intent": {
+          "type": "string",
+          "description": "Optional brief description of what the user wanted to do."
+        },
+        "metadata": {
+          "type": "object",
+          "description": "Optional non-secret request metadata for PMF discovery.",
+          "additionalProperties": true
+        }
+      },
+      "additionalProperties": true
+    }
+  },
+  {
+    "name": "hostodo_get_account_balance",
+    "description": "Coming soon (billing): Get account balance and credits. This PMF stub records demand and returns a structured coming_soon response; it does not perform the requested action yet. Do not send secrets.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "vm_id": {
+          "type": "string",
+          "description": "Optional Hostodo instance id, hostname, or unique prefix when relevant."
+        },
+        "resource_id": {
+          "type": "string",
+          "description": "Optional invoice/ticket/zone/deployment/resource id when relevant."
+        },
+        "intent": {
+          "type": "string",
+          "description": "Optional brief description of what the user wanted to do."
+        },
+        "metadata": {
+          "type": "object",
+          "description": "Optional non-secret request metadata for PMF discovery.",
+          "additionalProperties": true
+        }
+      },
+      "additionalProperties": true
+    }
+  },
+  {
+    "name": "hostodo_apply_credit",
+    "description": "Coming soon (billing): Apply account credit to an invoice. This PMF stub records demand and returns a structured coming_soon response; it does not perform the requested action yet. Do not send secrets.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "vm_id": {
+          "type": "string",
+          "description": "Optional Hostodo instance id, hostname, or unique prefix when relevant."
+        },
+        "resource_id": {
+          "type": "string",
+          "description": "Optional invoice/ticket/zone/deployment/resource id when relevant."
+        },
+        "intent": {
+          "type": "string",
+          "description": "Optional brief description of what the user wanted to do."
+        },
+        "metadata": {
+          "type": "object",
+          "description": "Optional non-secret request metadata for PMF discovery.",
+          "additionalProperties": true
+        }
+      },
+      "additionalProperties": true
+    }
+  },
+  {
+    "name": "hostodo_list_tickets",
+    "description": "Coming soon (helpdesk): List support tickets. This PMF stub records demand and returns a structured coming_soon response; it does not perform the requested action yet. Do not send secrets.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "vm_id": {
+          "type": "string",
+          "description": "Optional Hostodo instance id, hostname, or unique prefix when relevant."
+        },
+        "resource_id": {
+          "type": "string",
+          "description": "Optional invoice/ticket/zone/deployment/resource id when relevant."
+        },
+        "intent": {
+          "type": "string",
+          "description": "Optional brief description of what the user wanted to do."
+        },
+        "metadata": {
+          "type": "object",
+          "description": "Optional non-secret request metadata for PMF discovery.",
+          "additionalProperties": true
+        }
+      },
+      "additionalProperties": true
+    }
+  },
+  {
+    "name": "hostodo_get_ticket",
+    "description": "Coming soon (helpdesk): Get support ticket details. This PMF stub records demand and returns a structured coming_soon response; it does not perform the requested action yet. Do not send secrets.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "vm_id": {
+          "type": "string",
+          "description": "Optional Hostodo instance id, hostname, or unique prefix when relevant."
+        },
+        "resource_id": {
+          "type": "string",
+          "description": "Optional invoice/ticket/zone/deployment/resource id when relevant."
+        },
+        "intent": {
+          "type": "string",
+          "description": "Optional brief description of what the user wanted to do."
+        },
+        "metadata": {
+          "type": "object",
+          "description": "Optional non-secret request metadata for PMF discovery.",
+          "additionalProperties": true
+        }
+      },
+      "additionalProperties": true
+    }
+  },
+  {
+    "name": "hostodo_create_ticket",
+    "description": "Coming soon (helpdesk): Create a support ticket. This PMF stub records demand and returns a structured coming_soon response; it does not perform the requested action yet. Do not send secrets.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "vm_id": {
+          "type": "string",
+          "description": "Optional Hostodo instance id, hostname, or unique prefix when relevant."
+        },
+        "resource_id": {
+          "type": "string",
+          "description": "Optional invoice/ticket/zone/deployment/resource id when relevant."
+        },
+        "intent": {
+          "type": "string",
+          "description": "Optional brief description of what the user wanted to do."
+        },
+        "metadata": {
+          "type": "object",
+          "description": "Optional non-secret request metadata for PMF discovery.",
+          "additionalProperties": true
+        }
+      },
+      "additionalProperties": true
+    }
+  },
+  {
+    "name": "hostodo_reply_ticket",
+    "description": "Coming soon (helpdesk): Reply to a support ticket. This PMF stub records demand and returns a structured coming_soon response; it does not perform the requested action yet. Do not send secrets.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "vm_id": {
+          "type": "string",
+          "description": "Optional Hostodo instance id, hostname, or unique prefix when relevant."
+        },
+        "resource_id": {
+          "type": "string",
+          "description": "Optional invoice/ticket/zone/deployment/resource id when relevant."
+        },
+        "intent": {
+          "type": "string",
+          "description": "Optional brief description of what the user wanted to do."
+        },
+        "metadata": {
+          "type": "object",
+          "description": "Optional non-secret request metadata for PMF discovery.",
+          "additionalProperties": true
+        }
+      },
+      "additionalProperties": true
+    }
+  },
+  {
+    "name": "hostodo_close_ticket",
+    "description": "Coming soon (helpdesk): Close a support ticket. This PMF stub records demand and returns a structured coming_soon response; it does not perform the requested action yet. Do not send secrets.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "vm_id": {
+          "type": "string",
+          "description": "Optional Hostodo instance id, hostname, or unique prefix when relevant."
+        },
+        "resource_id": {
+          "type": "string",
+          "description": "Optional invoice/ticket/zone/deployment/resource id when relevant."
+        },
+        "intent": {
+          "type": "string",
+          "description": "Optional brief description of what the user wanted to do."
+        },
+        "metadata": {
+          "type": "object",
+          "description": "Optional non-secret request metadata for PMF discovery.",
+          "additionalProperties": true
+        }
+      },
+      "additionalProperties": true
+    }
+  },
+  {
+    "name": "hostodo_upload_ticket_attachment",
+    "description": "Coming soon (helpdesk): Upload a ticket attachment. This PMF stub records demand and returns a structured coming_soon response; it does not perform the requested action yet. Do not send secrets.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "vm_id": {
+          "type": "string",
+          "description": "Optional Hostodo instance id, hostname, or unique prefix when relevant."
+        },
+        "resource_id": {
+          "type": "string",
+          "description": "Optional invoice/ticket/zone/deployment/resource id when relevant."
+        },
+        "intent": {
+          "type": "string",
+          "description": "Optional brief description of what the user wanted to do."
+        },
+        "metadata": {
+          "type": "object",
+          "description": "Optional non-secret request metadata for PMF discovery.",
+          "additionalProperties": true
+        }
+      },
+      "additionalProperties": true
+    }
+  },
+  {
+    "name": "hostodo_list_dns_zones",
+    "description": "Coming soon (dns): List DNS zones. This PMF stub records demand and returns a structured coming_soon response; it does not perform the requested action yet. Do not send secrets.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "vm_id": {
+          "type": "string",
+          "description": "Optional Hostodo instance id, hostname, or unique prefix when relevant."
+        },
+        "resource_id": {
+          "type": "string",
+          "description": "Optional invoice/ticket/zone/deployment/resource id when relevant."
+        },
+        "intent": {
+          "type": "string",
+          "description": "Optional brief description of what the user wanted to do."
+        },
+        "metadata": {
+          "type": "object",
+          "description": "Optional non-secret request metadata for PMF discovery.",
+          "additionalProperties": true
+        }
+      },
+      "additionalProperties": true
+    }
+  },
+  {
+    "name": "hostodo_create_dns_record",
+    "description": "Coming soon (dns): Create a DNS record. This PMF stub records demand and returns a structured coming_soon response; it does not perform the requested action yet. Do not send secrets.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "vm_id": {
+          "type": "string",
+          "description": "Optional Hostodo instance id, hostname, or unique prefix when relevant."
+        },
+        "resource_id": {
+          "type": "string",
+          "description": "Optional invoice/ticket/zone/deployment/resource id when relevant."
+        },
+        "intent": {
+          "type": "string",
+          "description": "Optional brief description of what the user wanted to do."
+        },
+        "metadata": {
+          "type": "object",
+          "description": "Optional non-secret request metadata for PMF discovery.",
+          "additionalProperties": true
+        }
+      },
+      "additionalProperties": true
+    }
+  },
+  {
+    "name": "hostodo_update_dns_record",
+    "description": "Coming soon (dns): Update a DNS record. This PMF stub records demand and returns a structured coming_soon response; it does not perform the requested action yet. Do not send secrets.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "vm_id": {
+          "type": "string",
+          "description": "Optional Hostodo instance id, hostname, or unique prefix when relevant."
+        },
+        "resource_id": {
+          "type": "string",
+          "description": "Optional invoice/ticket/zone/deployment/resource id when relevant."
+        },
+        "intent": {
+          "type": "string",
+          "description": "Optional brief description of what the user wanted to do."
+        },
+        "metadata": {
+          "type": "object",
+          "description": "Optional non-secret request metadata for PMF discovery.",
+          "additionalProperties": true
+        }
+      },
+      "additionalProperties": true
+    }
+  },
+  {
+    "name": "hostodo_delete_dns_record",
+    "description": "Coming soon (dns): Delete a DNS record. This PMF stub records demand and returns a structured coming_soon response; it does not perform the requested action yet. Do not send secrets.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "vm_id": {
+          "type": "string",
+          "description": "Optional Hostodo instance id, hostname, or unique prefix when relevant."
+        },
+        "resource_id": {
+          "type": "string",
+          "description": "Optional invoice/ticket/zone/deployment/resource id when relevant."
+        },
+        "intent": {
+          "type": "string",
+          "description": "Optional brief description of what the user wanted to do."
+        },
+        "metadata": {
+          "type": "object",
+          "description": "Optional non-secret request metadata for PMF discovery.",
+          "additionalProperties": true
+        }
+      },
+      "additionalProperties": true
+    }
+  },
+  {
+    "name": "hostodo_list_rdns",
+    "description": "Coming soon (dns): List reverse DNS records. This PMF stub records demand and returns a structured coming_soon response; it does not perform the requested action yet. Do not send secrets.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "vm_id": {
+          "type": "string",
+          "description": "Optional Hostodo instance id, hostname, or unique prefix when relevant."
+        },
+        "resource_id": {
+          "type": "string",
+          "description": "Optional invoice/ticket/zone/deployment/resource id when relevant."
+        },
+        "intent": {
+          "type": "string",
+          "description": "Optional brief description of what the user wanted to do."
+        },
+        "metadata": {
+          "type": "object",
+          "description": "Optional non-secret request metadata for PMF discovery.",
+          "additionalProperties": true
+        }
+      },
+      "additionalProperties": true
+    }
+  },
+  {
+    "name": "hostodo_set_rdns",
+    "description": "Coming soon (dns): Set reverse DNS for an IP. This PMF stub records demand and returns a structured coming_soon response; it does not perform the requested action yet. Do not send secrets.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "vm_id": {
+          "type": "string",
+          "description": "Optional Hostodo instance id, hostname, or unique prefix when relevant."
+        },
+        "resource_id": {
+          "type": "string",
+          "description": "Optional invoice/ticket/zone/deployment/resource id when relevant."
+        },
+        "intent": {
+          "type": "string",
+          "description": "Optional brief description of what the user wanted to do."
+        },
+        "metadata": {
+          "type": "object",
+          "description": "Optional non-secret request metadata for PMF discovery.",
+          "additionalProperties": true
+        }
+      },
+      "additionalProperties": true
+    }
+  },
+  {
+    "name": "hostodo_list_snapshots",
+    "description": "Coming soon (snapshot): List VM snapshots. This PMF stub records demand and returns a structured coming_soon response; it does not perform the requested action yet. Do not send secrets.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "vm_id": {
+          "type": "string",
+          "description": "Optional Hostodo instance id, hostname, or unique prefix when relevant."
+        },
+        "resource_id": {
+          "type": "string",
+          "description": "Optional invoice/ticket/zone/deployment/resource id when relevant."
+        },
+        "intent": {
+          "type": "string",
+          "description": "Optional brief description of what the user wanted to do."
+        },
+        "metadata": {
+          "type": "object",
+          "description": "Optional non-secret request metadata for PMF discovery.",
+          "additionalProperties": true
+        }
+      },
+      "additionalProperties": true
+    }
+  },
+  {
+    "name": "hostodo_create_snapshot",
+    "description": "Coming soon (snapshot): Create a VM snapshot. This PMF stub records demand and returns a structured coming_soon response; it does not perform the requested action yet. Do not send secrets.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "vm_id": {
+          "type": "string",
+          "description": "Optional Hostodo instance id, hostname, or unique prefix when relevant."
+        },
+        "resource_id": {
+          "type": "string",
+          "description": "Optional invoice/ticket/zone/deployment/resource id when relevant."
+        },
+        "intent": {
+          "type": "string",
+          "description": "Optional brief description of what the user wanted to do."
+        },
+        "metadata": {
+          "type": "object",
+          "description": "Optional non-secret request metadata for PMF discovery.",
+          "additionalProperties": true
+        }
+      },
+      "additionalProperties": true
+    }
+  },
+  {
+    "name": "hostodo_restore_snapshot",
+    "description": "Coming soon (snapshot): Restore a VM snapshot. This PMF stub records demand and returns a structured coming_soon response; it does not perform the requested action yet. Do not send secrets.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "vm_id": {
+          "type": "string",
+          "description": "Optional Hostodo instance id, hostname, or unique prefix when relevant."
+        },
+        "resource_id": {
+          "type": "string",
+          "description": "Optional invoice/ticket/zone/deployment/resource id when relevant."
+        },
+        "intent": {
+          "type": "string",
+          "description": "Optional brief description of what the user wanted to do."
+        },
+        "metadata": {
+          "type": "object",
+          "description": "Optional non-secret request metadata for PMF discovery.",
+          "additionalProperties": true
+        }
+      },
+      "additionalProperties": true
+    }
+  },
+  {
+    "name": "hostodo_get_vm_metrics",
+    "description": "Coming soon (monitoring): Get VM resource metrics. This PMF stub records demand and returns a structured coming_soon response; it does not perform the requested action yet. Do not send secrets.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "vm_id": {
+          "type": "string",
+          "description": "Optional Hostodo instance id, hostname, or unique prefix when relevant."
+        },
+        "resource_id": {
+          "type": "string",
+          "description": "Optional invoice/ticket/zone/deployment/resource id when relevant."
+        },
+        "intent": {
+          "type": "string",
+          "description": "Optional brief description of what the user wanted to do."
+        },
+        "metadata": {
+          "type": "object",
+          "description": "Optional non-secret request metadata for PMF discovery.",
+          "additionalProperties": true
+        }
+      },
+      "additionalProperties": true
+    }
+  },
+  {
+    "name": "hostodo_get_bandwidth_usage",
+    "description": "Coming soon (monitoring): Get VM bandwidth usage. This PMF stub records demand and returns a structured coming_soon response; it does not perform the requested action yet. Do not send secrets.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "vm_id": {
+          "type": "string",
+          "description": "Optional Hostodo instance id, hostname, or unique prefix when relevant."
+        },
+        "resource_id": {
+          "type": "string",
+          "description": "Optional invoice/ticket/zone/deployment/resource id when relevant."
+        },
+        "intent": {
+          "type": "string",
+          "description": "Optional brief description of what the user wanted to do."
+        },
+        "metadata": {
+          "type": "object",
+          "description": "Optional non-secret request metadata for PMF discovery.",
+          "additionalProperties": true
+        }
+      },
+      "additionalProperties": true
+    }
+  },
+  {
+    "name": "hostodo_get_incidents",
+    "description": "Coming soon (monitoring): Get service incidents. This PMF stub records demand and returns a structured coming_soon response; it does not perform the requested action yet. Do not send secrets.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "vm_id": {
+          "type": "string",
+          "description": "Optional Hostodo instance id, hostname, or unique prefix when relevant."
+        },
+        "resource_id": {
+          "type": "string",
+          "description": "Optional invoice/ticket/zone/deployment/resource id when relevant."
+        },
+        "intent": {
+          "type": "string",
+          "description": "Optional brief description of what the user wanted to do."
+        },
+        "metadata": {
+          "type": "object",
+          "description": "Optional non-secret request metadata for PMF discovery.",
+          "additionalProperties": true
+        }
+      },
+      "additionalProperties": true
+    }
+  },
+  {
+    "name": "hostodo_check_vm_health",
+    "description": "Coming soon (monitoring): Run a VM health check. This PMF stub records demand and returns a structured coming_soon response; it does not perform the requested action yet. Do not send secrets.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "vm_id": {
+          "type": "string",
+          "description": "Optional Hostodo instance id, hostname, or unique prefix when relevant."
+        },
+        "resource_id": {
+          "type": "string",
+          "description": "Optional invoice/ticket/zone/deployment/resource id when relevant."
+        },
+        "intent": {
+          "type": "string",
+          "description": "Optional brief description of what the user wanted to do."
+        },
+        "metadata": {
+          "type": "object",
+          "description": "Optional non-secret request metadata for PMF discovery.",
+          "additionalProperties": true
+        }
+      },
+      "additionalProperties": true
+    }
+  },
+  {
+    "name": "hostodo_list_ssh_keys",
+    "description": "Coming soon (access): List SSH keys. This PMF stub records demand and returns a structured coming_soon response; it does not perform the requested action yet. Do not send secrets.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "vm_id": {
+          "type": "string",
+          "description": "Optional Hostodo instance id, hostname, or unique prefix when relevant."
+        },
+        "resource_id": {
+          "type": "string",
+          "description": "Optional invoice/ticket/zone/deployment/resource id when relevant."
+        },
+        "intent": {
+          "type": "string",
+          "description": "Optional brief description of what the user wanted to do."
+        },
+        "metadata": {
+          "type": "object",
+          "description": "Optional non-secret request metadata for PMF discovery.",
+          "additionalProperties": true
+        }
+      },
+      "additionalProperties": true
+    }
+  },
+  {
+    "name": "hostodo_add_ssh_key",
+    "description": "Coming soon (access): Add an SSH key. This PMF stub records demand and returns a structured coming_soon response; it does not perform the requested action yet. Do not send secrets.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "vm_id": {
+          "type": "string",
+          "description": "Optional Hostodo instance id, hostname, or unique prefix when relevant."
+        },
+        "resource_id": {
+          "type": "string",
+          "description": "Optional invoice/ticket/zone/deployment/resource id when relevant."
+        },
+        "intent": {
+          "type": "string",
+          "description": "Optional brief description of what the user wanted to do."
+        },
+        "metadata": {
+          "type": "object",
+          "description": "Optional non-secret request metadata for PMF discovery.",
+          "additionalProperties": true
+        }
+      },
+      "additionalProperties": true
+    }
+  },
+  {
+    "name": "hostodo_remove_ssh_key",
+    "description": "Coming soon (access): Remove an SSH key. This PMF stub records demand and returns a structured coming_soon response; it does not perform the requested action yet. Do not send secrets.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "vm_id": {
+          "type": "string",
+          "description": "Optional Hostodo instance id, hostname, or unique prefix when relevant."
+        },
+        "resource_id": {
+          "type": "string",
+          "description": "Optional invoice/ticket/zone/deployment/resource id when relevant."
+        },
+        "intent": {
+          "type": "string",
+          "description": "Optional brief description of what the user wanted to do."
+        },
+        "metadata": {
+          "type": "object",
+          "description": "Optional non-secret request metadata for PMF discovery.",
+          "additionalProperties": true
+        }
+      },
+      "additionalProperties": true
+    }
   }
 ]
