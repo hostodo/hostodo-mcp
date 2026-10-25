@@ -55,9 +55,12 @@ Tokens are scoped. Grant only the scopes your client needs:
 
 - `vms:read` — list VMs, view VM metadata, list OS templates, and read VM/account state
 - `vms:power` — power actions, rename, reinstall, and other state-changing VM workflows
+- `vms:protection` — explicitly change VM protection using `hostodo_set_vm_protection`
 - `vms:exec` — command execution, async commands, service operations, and artifact install workflows
 
 Command execution is disabled by default on each VM and must be explicitly enabled per VM before exec/artifact tools can run.
+
+VM list/get responses expose `protection_enabled`. Protection blocks rename and reinstall, not power operations. Disabling protection requires an explicit user request and exact `UNPROTECT <instance_id>` confirmation using the canonical instance ID. Never automatically unlock a VM to complete another task. Existing sessions/tokens do not gain `vms:protection` automatically: obtain explicit authorization for that scope. The wrapper preserves structured upstream errors; it does not reauthorize or retry protected operations.
 
 ## Run this MCP server locally
 

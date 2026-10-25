@@ -95,13 +95,14 @@ async function proxyToolCall(name, args) {
   const data = parseMcpHttpBody(bodyText, response.headers.get('content-type') || '');
 
   if (!response.ok) {
-    const message = data?.error?.message || data?.message || bodyText || `HTTP ${response.status}`;
+    const message = data?.error?.message || data?.detail || data?.message || bodyText || `HTTP ${response.status}`;
     return {
       isError: true,
+      ...(data && typeof data === 'object' && !Array.isArray(data) ? { structuredContent: data } : {}),
       content: [
         {
           type: 'text',
-          text: `Hostodo MCP returned HTTP ${response.status}: ${message}`,
+          text: `Hostodo MCP returned HTTP ${response.status}: ${data ? JSON.stringify(data, null, 2) : message}`,
         },
       ],
     };
@@ -110,6 +111,7 @@ async function proxyToolCall(name, args) {
   if (data?.error) {
     return {
       isError: true,
+      structuredContent: data.error,
       content: [
         {
           type: 'text',
