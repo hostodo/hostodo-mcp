@@ -3,6 +3,7 @@ import { once } from 'node:events';
 
 const child = spawn(process.execPath, ['src/index.js'], {
   cwd: new URL('..', import.meta.url),
+  env: { ...process.env, HOSTODO_MCP_TOKEN: '', HOSTODO_API_TOKEN: '' },
   stdio: ['pipe', 'pipe', 'pipe'],
 });
 
@@ -59,9 +60,10 @@ const list = await waitFor(2);
 if (list.error) throw new Error(`tools/list failed: ${JSON.stringify(list.error)}`);
 
 const tools = list.result?.tools || [];
-if (tools.length !== 47) throw new Error(`Expected 47 tools, got ${tools.length}`);
+if (tools.length !== 48) throw new Error(`Expected 48 tools, got ${tools.length}`);
 for (const name of [
   'hostodo_list_vms',
+  'hostodo_set_vm_protection',
   'hostodo_list_templates',
   'hostodo_start_vm_command',
   'hostodo_install_artifact',

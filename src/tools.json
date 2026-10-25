@@ -1,7 +1,7 @@
 [
   {
     "name": "hostodo_list_vms",
-    "description": "List the authenticated Hostodo customer's VPS instances and capability flags.",
+    "description": "List the authenticated Hostodo customer's VPS instances, protection_enabled state, and capability flags.",
     "inputSchema": {
       "type": "object",
       "properties": {},
@@ -10,7 +10,7 @@
   },
   {
     "name": "hostodo_get_vm",
-    "description": "Get detailed metadata for one owned Hostodo VPS. VM references may be id, hostname, or unique prefix.",
+    "description": "Get detailed metadata including protection_enabled for one owned Hostodo VPS. VM references may be id, hostname, or unique prefix.",
     "inputSchema": {
       "type": "object",
       "properties": {
@@ -21,6 +21,20 @@
       "required": [
         "vm_id"
       ],
+      "additionalProperties": false
+    }
+  },
+  {
+    "name": "hostodo_set_vm_protection",
+    "description": "Explicitly enable or disable protection for one owned VPS. Requires vms:protection scope; existing sessions/tokens must be explicitly reauthorized to grant it. Read protection_enabled using hostodo_list_vms or hostodo_get_vm. Disabling requires exact confirmation UNPROTECT <instance_id> using the canonical instance ID. Only disable when the user explicitly requests unprotecting this VM. Never automatically unlock a VM to satisfy another request, including rename or reinstall. Protection blocks deletion/termination, reinstall/rebuild, actual hostname rename and cancellation; all power operations remain available.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "vm_id": { "type": "string", "description": "Hostodo instance ID, hostname, or unique prefix." },
+        "enabled": { "type": "boolean" },
+        "confirmation": { "type": "string", "description": "Required when disabling: exact UNPROTECT <instance_id> using the canonical instance ID." }
+      },
+      "required": ["vm_id", "enabled"],
       "additionalProperties": false
     }
   },
