@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+# .agents/setup — idempotent dependency install for agent sandboxes.
+set -euo pipefail
+cd "$(dirname "$0")/.."
+
+STAMP=.agents/.setup-stamp
+HASH=$( (sha256sum package-lock.json 2>/dev/null || true) | awk '{print $1}')
+if [ -f "$STAMP" ] && [ "$(cat "$STAMP")" = "$HASH" ] && [ -d node_modules ]; then
+  echo "hostodo-mcp: deps already installed ($HASH)"
+  exit 0
+fi
+
+if [ -f package-lock.json ]; then
+  npm ci --no-audit --no-fund --loglevel=error
+else
+  npm install --no-audit --no-fund --loglevel=error
+fi
+
+mkdir -p .agents
+printf '%s\n' "$HASH" > "$STAMP"
+echo "hostodo-mcp: ready — npm test"
