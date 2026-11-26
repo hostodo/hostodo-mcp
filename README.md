@@ -8,40 +8,51 @@ Hostodo MCP lets AI assistants and MCP-compatible clients manage Hostodo VPS inf
 
 ## What it can do
 
-Hostodo MCP exposes real VPS, account, support, and DNS management tools for authenticated Hostodo customers:
+Hostodo MCP exposes real VPS, account, and support tools for authenticated Hostodo customers. The hosted catalog also lists some tools that are marked "coming soon"; those are called out separately below and do not perform any action yet.
 
-### VPS operations
+### Available now
 
-- List owned VPS instances and capability flags
-- Read detailed VM metadata
-- List enabled OS templates for reinstall workflows
-- Power control: start, shutdown, reboot, stop, and reset
-- Rename a VPS with an explicit confirmation phrase
-- Reinstall a VPS to an OS template with an explicit confirmation phrase
-- View VM metrics, bandwidth usage, health checks, and incidents
-- Manage snapshots where supported
+**Identity and VPS inspection**
 
-### Agent execution and deployments
+- Identify the authenticated account, session, and granted scopes (`hostodo_whoami`)
+- List owned VPS instances and capability flags (`hostodo_list_vms`) and read detailed VM metadata (`hostodo_get_vm`)
+- List enabled OS templates for reinstall workflows (`hostodo_list_templates`)
 
-- Enable or disable MCP/QEMU guest-agent command execution per VM
-- Run bounded synchronous commands inside a VM through the QEMU guest agent
-- Start, poll, read logs from, and cancel asynchronous VM commands
-- Upload artifacts and install files onto owned VMs with SHA-256 verification
-- Inspect deployments, service logs, rollback deployments, and restart services where available
+**VPS operations**
 
-### Account and support workflows
+- Power control: start, shutdown, reboot, stop, and reset (`hostodo_power_vm`)
+- Rename a VPS (`hostodo_rename_vm`) or reinstall it to an OS template (`hostodo_reinstall_vm`), each with an explicit confirmation phrase
 
-- List invoices, inspect invoice details, and pay invoices
-- List payment methods and account balance
-- Apply account credit where supported
-- List, create, reply to, and close support tickets
-- Upload ticket attachments
+**Agent execution, logs, and files** (per-VM opt-in, `vms:exec`)
 
-### DNS and access management
+- Enable or disable MCP/QEMU guest-agent command execution per VM (`hostodo_set_vm_exec_enabled`)
+- Run bounded synchronous root commands (`hostodo_exec_vm_command`)
+- Start, poll, read logs from, and cancel asynchronous commands (`hostodo_start_vm_command`, `hostodo_get_vm_command_output`, `hostodo_read_vm_command_logs`, `hostodo_cancel_vm_command`)
+- Read recent systemd service or `/var/log` file logs (`hostodo_get_service_logs`)
+- Upload artifacts and install files with SHA-256 verification (`hostodo_create_artifact_upload`, `hostodo_install_artifact`)
 
-- List DNS zones and manage DNS records
-- List and set rDNS records
-- List, add, and remove SSH keys
+**Deployments and Capacity**
+
+- List deployment options, quote, create, and track billable VPS deployment orders (`hostodo_list_deployment_options`, `hostodo_quote_deployment`, `hostodo_create_deployment`, `hostodo_get_deployment`), where enabled for your account
+- List Capacity tiers and pools, purchase or upgrade Capacity, and create quota-checked VMs inside a pool (`hostodo_list_pool_options`, `hostodo_list_resource_pools`, `hostodo_get_resource_pool`, `hostodo_create_resource_pool`, `hostodo_upgrade_resource_pool`, `hostodo_create_pool_vm`)
+
+**Support**
+
+- List, read, create, reply to, and close support tickets (`hostodo_list_tickets`, `hostodo_get_ticket`, `hostodo_create_ticket`, `hostodo_reply_ticket`, `hostodo_close_ticket`)
+
+### Coming soon (listed in the catalog, not functional yet)
+
+These tools return a structured `coming_soon` response and do not perform the requested action. They record demand so Hostodo can prioritize them.
+
+- Monitoring: VM metrics, bandwidth usage, health checks, incidents
+- Snapshots: create, list, restore
+- DNS: zones and records, reverse DNS
+- Access: list, add, and remove SSH keys
+- Billing: invoices, pay invoice, account balance, apply credit, payment methods
+- Deploy: restart service, rollback deployment
+- Helpdesk: ticket attachments
+
+See the [tool reference](https://hostodo.com/docs/mcp#all-tools) for scopes and descriptions.
 
 ## Authentication
 
@@ -54,8 +65,11 @@ Authorization: Bearer <hostodo_agent_token>
 Tokens are scoped. Grant only the scopes your client needs:
 
 - `vms:read` — list VMs, view VM metadata, list OS templates, and read VM/account state
-- `vms:power` — power actions, rename, reinstall, and other state-changing VM workflows
-- `vms:exec` — command execution, async commands, service operations, and artifact install workflows
+- `vms:power` — power actions, rename, and reinstall
+- `vms:exec` — command execution, async commands, service logs, and artifact install workflows
+- `deployments:read` / `deployments:write` — deployment and Capacity options, quotes, orders, and pool VMs (where enabled for your account)
+- `helpdesk:read` / `helpdesk:write` — read, create, reply to, and close support tickets
+- `account:read` — account-level metadata such as email and name in `hostodo_whoami`
 
 Command execution is disabled by default on each VM and must be explicitly enabled per VM before exec/artifact tools can run.
 
